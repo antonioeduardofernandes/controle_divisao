@@ -1,14 +1,26 @@
 <script>
-  let funcoes = ["agente administrativo", "aosd", "enfermeira(o)", "técnico de enfermagem"]
-  let setores = ["central de material e esterilização", "ambulatório infantil", "hemodinâmica"]
-  let registro = {}
-  import { funcionarios } from "./stores"
+  import { funcionarios, setores, funcoes } from "./stores"
+
+  let registro = {
+    nome: "",
+    matricula: "",
+    admissao: "",
+    setor: "",
+  }
+
+  const formIsEmpty = () => {
+    return !Object.values(registro).every(field => field)
+  }
 
   const salvarRegistro = () => {
+    // verifica se o formulário está vazio
+    // if (formIsEmpty()) {
+    //   return alert("É necessário preencher todos os campos do formulário")
+    // }
     $funcionarios = [...$funcionarios, registro]
     limparFormulario()
-    console.log(...$funcionarios)
   }
+
   const limparFormulario = () => (registro = {})
 </script>
 
@@ -23,29 +35,33 @@
     </div>
 
     <div class="row">
+      <!-- Matrícula -->
       <div>
         <label for="matricula">Matrícula</label>
         <input autocomplete="off" id="matricula" type="number" bind:value={registro.matricula} />
       </div>
       <div>
+        <!-- Admissão -->
         <label for="admissao">Admissão</label>
-        <input autocomplete="off" id="admissao" type="date" />
+        <input id="admissao" type="date" bind:value={registro.admissao} />
       </div>
     </div>
+    <!-- Função -->
     <div>
       <label for="funcao">Função</label>
       <select id="funcao" name="" bind:value={registro.funcao}>
         <option value="">Selecione</option>
-        {#each funcoes as funcao}
+        {#each $funcoes as funcao}
           <option value={funcao}>{funcao}</option>
         {/each}
       </select>
     </div>
+    <!-- Setor -->
     <div>
       <label for="setor">Lotação</label>
       <select id="setor" name="" bind:value={registro.setor}>
         <option value="">Selecione</option>
-        {#each setores as setor}
+        {#each $setores as setor}
           <option value={setor}>{setor}</option>
         {/each}
       </select>
@@ -59,7 +75,6 @@
 </div>
 
 <style>
-
   .save_button {
     background-color: var(--accent-color);
     color: white;

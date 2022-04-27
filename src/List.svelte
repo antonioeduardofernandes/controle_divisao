@@ -15,6 +15,7 @@
     <span on:click={() => filter("matricula")}>Matrícula</span>
     <span on:click={() => filter("setor")}>Lotação</span>
     <span on:click={() => filter("funcao")}>Função</span>
+    <span on:click={() => filter("admissao")}>Admissão</span>
   </div>
   {#each filteredList as funcionario}
     <div class="item">
@@ -22,6 +23,11 @@
       <span>{funcionario.matricula}</span>
       <span class="wrap_text ">{funcionario.setor}</span>
       <span class="wrap_text ">{funcionario.funcao}</span>
+      <span
+        >{`${new Date(funcionario.admissao).getDate()+1}/${new Date(funcionario.admissao).getMonth()+1}/${new Date(
+          funcionario.admissao
+        ).getFullYear()}`}</span
+      >
     </div>
   {/each}
 </div>
@@ -31,6 +37,7 @@
     display: flex;
     flex-flow: column;
     row-gap: 1rem;
+    overflow: scroll;
   }
 
   .nome {
@@ -49,7 +56,7 @@
   .item {
     display: grid;
     grid-template-columns: repeat(5, 180px);
-    column-gap: 4rem;
+    column-gap: 1rem;
   }
 
   .item:hover {

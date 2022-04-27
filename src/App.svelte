@@ -19,12 +19,14 @@
     margin: 0;
     padding: 0;
     font-family: "Saira", sans-serif;
+    font-size: 14px;
     --accent-color: teal;
   }
   main {
     padding: 1rem;
     display: flex;
     flex-flow: column;
+    overflow: hidden ;
   }
 
   .content {
