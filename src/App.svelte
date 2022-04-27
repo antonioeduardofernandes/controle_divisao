@@ -1,11 +1,15 @@
 <script>
+  import Form from "./Form.svelte"
   import List from "./List.svelte"
 </script>
 
 <div class="container">
   <main>
     <h1>Controle da Divisão</h1>
-    <List />
+    <div class="content">
+      <Form />
+      <List />
+    </div>
   </main>
 </div>
 
@@ -19,5 +23,12 @@
   }
   main {
     padding: 1rem;
+    display: flex;
+    flex-flow: column;
+  }
+
+  .content {
+    display: flex;
+    column-gap: 3rem;
   }
 </style>
